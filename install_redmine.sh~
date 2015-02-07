@@ -1,0 +1,7 @@
+#!/bin/bash
+
+BASEDIR=$(dirname $0)
+exec sh $BASEDIR'/scripts/install_rvm.sh';
+exec sh $BASEDIR'/scripts/install_ruby.sh';
+exec sh $BASEDIR'/scripts/install_redmine.sh';
+exec sh $BASEDIR'/scripts/install_apache.sh';

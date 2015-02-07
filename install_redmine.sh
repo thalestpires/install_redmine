@@ -1,7 +1,7 @@
 echo 'Install RVM'
 gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
 \curl -sSL https://get.rvm.io | bash -s stable
-source ~/.rvm/scripts/rvm
+source /usr/local/rvm
 
 echo 'Install RUBY'
 rvm requirements

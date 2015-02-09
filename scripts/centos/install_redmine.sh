@@ -1,22 +1,30 @@
 #!/bin/bash
 
 echo 'Install Redmine'
-mkdir /opt/redmine
-cd /opt/redmine
+
+
+mkdir $REDMINE_PATH
+cd $REDMINE_PATH
 echo `pwd`
-apt-get install -y subversion
-svn co https://svn.redmine.org/redmine/branches/2.6-stable redmine-2.6
-apt-get install -y mysql-server
-apt-get install -y libmysqlclient-dev freetds-dev imagemagick libmagickcore-dev libmagickwand-dev libcurl4-openssl-dev apache2-threaded-dev libapr1-dev libaprutil1-dev
-cd redmine-2.6/config
-echo `pwd`
-wget https://raw.githubusercontent.com/victorlcampos/install_redmine/master/templates/database.yml
-wget https://raw.githubusercontent.com/victorlcampos/install_redmine/master/templates/configuration.yml
-cd /opt/redmine/redmine-2.6
-echo `pwd`
+svn co https://svn.redmine.org/redmine/branches/$REDMINE_VER-stable redmine-$REDMINE_VER
+
+yum install mysql-devel ImageMagick-devel 
+
+cp redmine-$REDMINE_VER/config/database.yml{.example,}
+cp redmine-$REDMINE_VER/config/configuration.yml{.example,}
+sed --in-place "s/username:.*/username: $DB_USERNAME/g" redmine-$REDMINE_VER/config/database.yml
+sed --in-place "s/password:.*/password: $DB_PASSWORD/g" redmine-$REDMINE_VER/config/database.yml
+
+cd redmine-$REDMINE_VER
+
 bundle
 bundle exec rake generate_secret_token
-bundle exec rake db:create RAILS_ENV=production
 bundle exec rake db:migrate RAILS_ENV=production
+
+adduser redmine
+usermod -a -G rvm redmine
+chown -R redmine:redmine $REDMINE_PATH/redmine-$REDMINE_VER/{public,tmp,log,files}
+
+cd ..
 
 

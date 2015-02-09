@@ -3,7 +3,7 @@ Install Redmine Script
 
 #How to use:
 ## Ubuntu
-ssh install_redmine.sh 1.9.3 ubuntu
+ssh install_redmine.sh ubuntu
 
 ## CentOS
-ssh install_redmine.sh 1.9.3 centos
+ssh install_redmine.sh centos

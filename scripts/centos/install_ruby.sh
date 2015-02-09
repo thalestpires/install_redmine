@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo 'Install RUBY'
+echo "Install RUBY $RUBY_VERSION..."
 rvm requirements
-rvm install $1
-rvm use $1 --default
-rvm alias create default $1
+rvm install $RUBY_VERSION
+rvm use $RUBY_VERSION --default
+rvm alias create default $RUBY_VERSION

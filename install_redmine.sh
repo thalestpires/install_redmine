@@ -9,9 +9,9 @@ export DB_ROOT_PASSWORD=nfPGN927156
 
 
 BASEDIR=$(dirname $0)
-bash -li "$BASEDIR/scripts/$2/pre-install.sh"
-bash -li "$BASEDIR/scripts/$2/install_rvm.sh"
-bash -li "$BASEDIR/scripts/$2/install_ruby.sh"
-bash -li "$BASEDIR/scripts/$2/install_mysql.sh"
-bash -li "$BASEDIR/scripts/$2/install_redmine.sh"
-bash -li "$BASEDIR/scripts/$2/install_apache.sh"
+bash -li "$BASEDIR/scripts/$1/pre-install.sh"
+bash -li "$BASEDIR/scripts/$1/install_rvm.sh"
+bash -li "$BASEDIR/scripts/$1/install_ruby.sh"
+bash -li "$BASEDIR/scripts/$1/install_mysql.sh"
+bash -li "$BASEDIR/scripts/$1/install_redmine.sh"
+bash -li "$BASEDIR/scripts/$1/install_apache.sh"

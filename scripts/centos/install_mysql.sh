@@ -1,4 +1,4 @@
-yum install mysql-server
+yum -y install mariadb-server mariadb
 service mysqld start
 chkconfig mysqld on
 /usr/bin/mysqladmin -u root password $DB_ROOT_PASSWORD

@@ -3,7 +3,7 @@
 echo 'Install Redmine'
 
 
-mkdir $REDMINE_PATH
+mkdir -p $REDMINE_PATH
 cd $REDMINE_PATH
 echo `pwd`
 svn co https://svn.redmine.org/redmine/branches/$REDMINE_VER-stable redmine-$REDMINE_VER

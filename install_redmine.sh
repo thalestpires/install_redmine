@@ -1,11 +1,11 @@
 #!/bin/bash
 
 export RUBY_VERSION=1.9.3
-export REDMINE_PATH=/notafiscal/redmin
+export REDMINE_PATH=/soma/redmine
 export REDMINE_VER=2.6
-export DB_USERNAME=notaPGN
-export DB_PASSWORD=notaPGN121267
-export DB_ROOT_PASSWORD=nfPGN927156
+export DB_USERNAME=soma
+export DB_PASSWORD=soma121267
+export DB_ROOT_PASSWORD=gcSOMA927156
 
 
 BASEDIR=$(dirname $0)

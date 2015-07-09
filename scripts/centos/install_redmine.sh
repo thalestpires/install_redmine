@@ -25,6 +25,8 @@ adduser redmine
 usermod -a -G rvm redmine
 chown -R redmine:redmine $REDMINE_PATH/redmine-$REDMINE_VER/{public,tmp,log,files}
 
+#TODO mover lugar dos anexos
+
 cd ..
 
 

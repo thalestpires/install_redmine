@@ -6,7 +6,7 @@ echo 'Install Redmine'
 mkdir -p $REDMINE_PATH
 cd $REDMINE_PATH
 echo `pwd`
-svn co https://svn.redmine.org/redmine/branches/$REDMINE_VER-stable redmine-$REDMINE_VER
+svn co http://svn.redmine.org/redmine/branches/$REDMINE_VER-stable redmine-$REDMINE_VER
 
 yum install mysql-devel ImageMagick-devel 
 
@@ -17,6 +17,7 @@ sed --in-place "s/password:.*/password: $DB_PASSWORD/g" redmine-$REDMINE_VER/con
 
 cd redmine-$REDMINE_VER
 
+gem install bundle
 bundle
 bundle exec rake generate_secret_token
 bundle exec rake db:migrate RAILS_ENV=production
@@ -25,8 +26,11 @@ adduser redmine
 usermod -a -G rvm redmine
 chown -R redmine:redmine $REDMINE_PATH/redmine-$REDMINE_VER/{public,tmp,log,files}
 
+
+ln -s $REDMINE_PATH/redmine-$REDMINE_VER $REDMINE_PATH/current
+
 #TODO mover lugar dos anexos
 
-cd ..
+cd ~
 
 

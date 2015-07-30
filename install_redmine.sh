@@ -1,12 +1,16 @@
 #!/bin/bash
 
-export RUBY_VERSION=1.9.3
-export REDMINE_PATH=/soma/redmine
-export REDMINE_VER=2.6
-export DB_USERNAME=soma
-export DB_PASSWORD=soma121267
-export DB_ROOT_PASSWORD=gcSOMA927156
+export RUBY_VERSION=2.2
+export REDMINE_PATH=/opt/redmine
+export REDMINE_VER=3.1
 
+export MYSQL_PRINT_ONLY=true/false
+export MYSQL_IMPL=mariadb/mysql
+export MYSQL_ROOT_PASSWORD=fill_root_pass_here
+export MYSQL_DBNAME=redmine_r3demo
+export MYSQL_HOST=mammoth.local
+export MYSQL_USERNAME=redmine_r3demo
+export MYSQL_PASSWORD=fill_user_pass_here
 
 BASEDIR=$(dirname $0)
 bash -li "$BASEDIR/scripts/$1/pre-install.sh"

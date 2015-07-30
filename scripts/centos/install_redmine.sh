@@ -12,8 +12,8 @@ yum install mysql-devel ImageMagick-devel
 
 cp redmine-$REDMINE_VER/config/database.yml{.example,}
 cp redmine-$REDMINE_VER/config/configuration.yml{.example,}
-sed --in-place "s/username:.*/username: $DB_USERNAME/g" redmine-$REDMINE_VER/config/database.yml
-sed --in-place "s/password:.*/password: $DB_PASSWORD/g" redmine-$REDMINE_VER/config/database.yml
+sed --in-place "s/username:.*/username: $MYSQL_USERNAME/g" redmine-$REDMINE_VER/config/database.yml
+sed --in-place "s/password:.*/password: $MYSQL_PASSWORD/g" redmine-$REDMINE_VER/config/database.yml
 
 cd redmine-$REDMINE_VER
 

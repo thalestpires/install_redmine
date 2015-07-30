@@ -6,7 +6,15 @@ echo 'Install Redmine'
 mkdir -p $REDMINE_PATH
 cd $REDMINE_PATH
 echo `pwd`
-svn co http://svn.redmine.org/redmine/branches/$REDMINE_VER-stable redmine-$REDMINE_VER
+#svn co http://svn.redmine.org/redmine/branches/$REDMINE_VER-stable redmine-$REDMINE_VER
+
+echo "add the following key to your Planio account:"
+cat ~/.ssh/id_rsa.pub
+read
+
+sudo setfacl -R -m g:admin:rwX ./
+git clone -o vpms git@projects.visagio.com:visagio-redmine-app.git ./
+
 
 yum install mysql-devel ImageMagick-devel 
 

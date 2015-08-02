@@ -14,28 +14,27 @@ read
 
 sudo setfacl -R -m g:admin:rwX ./
 git clone -o vpms git@projects.visagio.com:visagio-redmine-app.git ./
+git checkout redmine-$REDMINE_VER
 
+sudo adduser redmine
+sudo usermod -a -G rvm redmine
+sudo chown -R redmine:redmine $REDMINE_PATH/{public,tmp,log,files}
+
+# TIDI create the push code to the target git repo
 
 yum install mysql-devel ImageMagick-devel 
 
-cp redmine-$REDMINE_VER/config/database.yml{.example,}
-cp redmine-$REDMINE_VER/config/configuration.yml{.example,}
-sed --in-place "s/username:.*/username: $MYSQL_USERNAME/g" redmine-$REDMINE_VER/config/database.yml
-sed --in-place "s/password:.*/password: $MYSQL_PASSWORD/g" redmine-$REDMINE_VER/config/database.yml
-
-cd redmine-$REDMINE_VER
+cp config/database.yml{.example,}
+cp config/configuration.yml{.example,}
+sed --in-place "s/username:.*/username: $MYSQL_USERNAME/g" config/database.yml
+sed --in-place "s/password:.*/password: $MYSQL_PASSWORD/g" config/database.yml
+sed --in-place "s/host:.*/host: $MYSQL_HOST/g" config/database.yml
+sed --in-place "s/database:.*/database: $MYSQL_DBNAME/g" config/database.yml
 
 gem install bundle
 bundle
 bundle exec rake generate_secret_token
 bundle exec rake db:migrate RAILS_ENV=production
-
-adduser redmine
-usermod -a -G rvm redmine
-chown -R redmine:redmine $REDMINE_PATH/redmine-$REDMINE_VER/{public,tmp,log,files}
-
-
-ln -s $REDMINE_PATH/redmine-$REDMINE_VER $REDMINE_PATH/current
 
 #TODO mover lugar dos anexos
 

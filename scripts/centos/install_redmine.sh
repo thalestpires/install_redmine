@@ -3,26 +3,29 @@
 echo 'Install Redmine'
 
 
-mkdir -p $REDMINE_PATH
-cd $REDMINE_PATH
-echo `pwd`
-#svn co http://svn.redmine.org/redmine/branches/$REDMINE_VER-stable redmine-$REDMINE_VER
+if [[ ! -e ~/.ssh/id_rsa.pub ]]; then 
+	ssh-keygen;
+fi
 
-echo "add the following key to your Planio account:"
+echo "add the following key to your Planio account and press any key to continue"
 cat ~/.ssh/id_rsa.pub
 read
 
-sudo setfacl -R -m g:admin:rwX ./
-git clone -o vpms git@projects.visagio.com:visagio-redmine-app.git ./
+sudo mkdir -p $REDMINE_PATH
+sudo setfacl -R -m g:admin:rwX $REDMINE_PATH
+sudo setfacl -R -m d:g:admin:rwX $REDMINE_PATH
+git clone -o vpms git@projects.visagio.com:visagio-redmine-app.git $REDMINE_PATH
+
+cd $REDMINE_PATH
 git checkout redmine-$REDMINE_VER
 
 sudo adduser redmine
 sudo usermod -a -G rvm redmine
 sudo chown -R redmine:redmine $REDMINE_PATH/{public,tmp,log,files}
 
-# TIDI create the push code to the target git repo
+# TODO create the push code to the target git repo
 
-yum install mysql-devel ImageMagick-devel 
+sudo yum install mysql-devel ImageMagick-devel 
 
 cp config/database.yml{.example,}
 cp config/configuration.yml{.example,}

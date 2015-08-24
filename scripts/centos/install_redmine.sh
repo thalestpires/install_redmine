@@ -3,7 +3,7 @@
 echo 'Install Redmine'
 
 
-if [[ ! -e ~/.ssh/id_rsa.pub ]]; then 
+if [[ ! -e ~/.ssh/id_rsa.pub ]]; then
 	ssh-keygen;
 fi
 
@@ -25,14 +25,14 @@ sudo chown -R redmine:redmine $REDMINE_PATH/{public,tmp,log,files}
 
 # TODO create the push code to the target git repo
 
-sudo yum install mysql-devel ImageMagick-devel 
+sudo yum install mysql-devel ImageMagick-devel
 
 cp config/database.yml{.example,}
 cp config/configuration.yml{.example,}
-sed --in-place "s/username:.*/username: $MYSQL_USERNAME/g" config/database.yml
-sed --in-place "s/password:.*/password: $MYSQL_PASSWORD/g" config/database.yml
-sed --in-place "s/host:.*/host: $MYSQL_HOST/g" config/database.yml
-sed --in-place "s/database:.*/database: $MYSQL_DBNAME/g" config/database.yml
+sed --in-place "0,/username:.*//username: $MYSQL_USERNAME/" config/database.yml
+sed --in-place "0,/password:.*//password: $MYSQL_PASSWORD/" config/database.yml
+sed --in-place "0,/host:.*//host: $MYSQL_HOST/" config/database.yml
+sed --in-place "0,/database:.*//database: $MYSQL_DBNAME/" config/database.yml
 
 gem install bundle
 bundle
@@ -42,5 +42,3 @@ bundle exec rake db:migrate RAILS_ENV=production
 #TODO mover lugar dos anexos
 
 cd ~
-
-

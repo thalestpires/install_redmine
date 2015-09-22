@@ -30,10 +30,10 @@ sudo yum install mysql-devel ImageMagick-devel
 
 cp config/database.yml{.example,}
 cp config/configuration.yml{.example,}
-sed --in-place "0,/username:.*//username: $MYSQL_USERNAME/" config/database.yml
-sed --in-place "0,/password:.*//password: $MYSQL_PASSWORD/" config/database.yml
-sed --in-place "0,/host:.*//host: $MYSQL_HOST/" config/database.yml
-sed --in-place "0,/database:.*//database: $MYSQL_DBNAME/" config/database.yml
+sed --in-place "0,/username:.*/s//username: $MYSQL_USERNAME/" config/database.yml
+sed --in-place "0,/password:.*/s//password: $MYSQL_PASSWORD/" config/database.yml
+sed --in-place "0,/host:.*/s//host: $MYSQL_HOST/" config/database.yml
+sed --in-place "0,/database:.*/s//database: $MYSQL_DBNAME/" config/database.yml
 
 gem install bundle
 bundle

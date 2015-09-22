@@ -12,6 +12,7 @@ cat ~/.ssh/id_rsa.pub
 read
 
 sudo mkdir -p $REDMINE_PATH
+sudo groupadd admin
 sudo setfacl -R -m g:admin:rwX $REDMINE_PATH
 sudo setfacl -R -m d:g:admin:rwX $REDMINE_PATH
 git clone -o vpms git@projects.visagio.com:visagio-redmine-app.git $REDMINE_PATH
